@@ -20,3 +20,8 @@
 .App-link {
   color: #09d3ac;
 }
+
+.brand-name {
+  font-family: 'Bowlby One SC', cursive !important;
+  color: red !important;
+}
