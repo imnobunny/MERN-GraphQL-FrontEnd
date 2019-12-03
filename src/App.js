@@ -10,6 +10,10 @@ import Home from './Pages/Home';
 import Request from './Components/Request';
 import Requests from './Components/Requests';
 import EditRequestForm from './Forms/EditRequestForm';
+import Profile from './Pages/Profile';
+import OrganizerLogin from './Organizer/OrganizerLogin';
+import Dashboard from './Organizer/Dashboard';
+
 const App = () => {
 
     //get the token in saved local storage
@@ -22,36 +26,52 @@ const App = () => {
     const [userEmail, setUserEmail] = useState( decoded ? decoded.email : null);
 
     //if eventOrganizer
-    //const [isAdmin, setIsAdmin] = useState(decoded ? decoded.isAdmin : null);
+  const [isAdmin, setIsAdmin] = useState(decoded ? decoded.isAdmin : null);
   
     
     const Authroute = ({token, ...props})=> {
-      if (verifyToken(token)) {
+      console.log(verifyToken(token) && !isAdmin);
+      if (verifyToken(token) && !isAdmin) {
         // return <Redirect to="/Home" />
       
         return (
          
          <Fragment>
-          
             <Home {...props} token={token} currentUser={currentUser()}/>
-           
          </Fragment>
         )
       } else {
-      
-        return <Redirect to="/Login" />
+      console.log(verifyToken(token) && !isAdmin);
+        
+        return <Redirect to="/login" />
       }
     }
 
-    // const updateSession = () => {
-    //   setToken(token);
-    //   setUserEmail(decoded.email);
-    //   setUserId(decoded.id);
-    // }
+    const AdminRoute = ({token, ...props}) =>{
+      if(verifyToken(token) && isAdmin){
+        return(
+          <Fragment>
+            <Dashboard {...props} token={token} currentUser={currentUser()} />
+          </Fragment>
+        )
+      } else {
+        return <Redirect to="/Home" />
+      }
+    }
+
+    const updateSession = () => {
+      setToken("");
+      setUserEmail(decoded.email);
+      setUserId(decoded.id);
+    }
 
     const currentUser = () => {
-      return { userEmail, userId, token }
+      return { userEmail, userId, token, isAdmin }
     };
+
+    // const AdminUser = () => {
+    //   return { userEmail, userId, token, isAdmin }
+    // };
   
   // Log out 
     const Logout = (props) => {
@@ -72,12 +92,15 @@ const App = () => {
       </Route>
     <Switch>
       <Route component={Register} exact path="/Register"/>
-      <Route component={Services} exact path="/Services"/>
+      <Authroute component={Services} exact path="/Services"/>
       <Route component={Login} exact path="/Login"/>
       <Route component={Logout} exact path="/Logout"/>
       <Authroute component={Home} token={token} exact path="/Home"/>
-      <Route component={Request} exact path="/Request/:id/" />
-      <Route component={EditRequestForm} exact path="/Request/edit/:id/" />
+      <Authroute component={Request} exact path="/Request/:id/" />
+      <Authroute component={EditRequestForm} exact path="/Request/edit/:id/" />
+      <Route component={Profile} exact path="/Profile/:id"/>
+      <Route component={OrganizerLogin}  exact path="/OrganizerLogin"/>
+      <AdminRoute component={Dashboard}  token={token}  exact path="/Dashboard"/>
       </Switch>
     </BrowserRouter>
   

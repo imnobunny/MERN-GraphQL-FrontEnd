@@ -69,6 +69,21 @@ const loginMutation = gql`
     }
 `;
 
+const loginOrganizerMutation = gql`
+    mutation(
+        $email: String!
+        $password: String!
+    ){
+        loginOrganizer(
+            email: $email
+            password: $password
+        ) {
+            token
+            isAdmin
+        }
+    }
+`;
+
 const updateStatus = gql`
     mutation(
         $statusId: String
@@ -114,7 +129,7 @@ const updateRequestMutation = gql`
 
 const updateStatusRequestMutation = gql`
     mutation(
-        $id: id
+        $id: ID!
         $statusId: String!
     ) {
         updateStatusRequest(
@@ -126,6 +141,31 @@ const updateStatusRequestMutation = gql`
     }
 `;
 
+const updateCustomerMutation = gql`
+    mutation(
+        $id: ID!
+        $email: String
+        $password: String
+        $lastname: String
+        $firstname: String
+        $address: String
+        $contact: String
+    ){
+        updateCustomer(
+            id: $id
+            email: $email
+            password: $password
+            lastname: $lastname
+            firstname: $firstname
+            address: $address
+            contact: $contact
+        ){
+           id
+        }
+    }
+`;
+
 export { storeCustomerMutation, storeRequestMutation, 
     storeStatusMutation, loginMutation, updateStatus, 
-    updateRequestMutation, updateStatusRequestMutation }
+    updateRequestMutation, updateStatusRequestMutation, 
+    updateCustomerMutation, loginOrganizerMutation }

@@ -35,11 +35,11 @@ const Request = (props) => {
                             <label>Request Status</label>
                             <input type="text" value={request.dateRequested} className="form-control " readOnly/>
                         </div>
-                        <div className="form-groups">
+                        {/* <div className="form-groups">
                         <Link to={`/Request/edit/${request.id}`} className="btn btn-danger btn-block mt-4" >
                             Edit Request
                         </Link>
-                        </div>
+                        </div> */}
                     </form>
                </Fragment>
             )

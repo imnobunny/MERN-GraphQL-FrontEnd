@@ -67,10 +67,13 @@ const Home = (props) => {
       }).then(formData => {
          //console.log(formData.value < 0? "yes" : "no")
             if(formData.value){
-               console.log('test')
+               //console.log(formData)
                props.updateStatusRequestMutation({
                   variables: formData.value,
-                  refetchQueries: [{query: getCustomerQuery}]
+                  refetchQueries: [{
+                     query: getCustomerQuery,
+                     variables: {id: props.currentUser.userId}
+                  }]
                })
                   .then(response => {
                      let result = response.data.updateStatusRequest;
@@ -94,7 +97,10 @@ const Home = (props) => {
       props.storeRequestMutation({
          variables: {
             type, description, numberOfVisitors, customerId, statusId, dateRequested
-         }
+         },refetchQueries: [{ 
+            query: getCustomerQuery,
+            variables: { id: props.currentUser.userId }
+          }]
       })
       .then(response => {
          //console.log(response.data)
@@ -107,7 +113,6 @@ const Home = (props) => {
                icon: "info"
             })
                .then(()=>{
-                  // refetchQueries: [{ query: getCustomerQuery}]
                   setType("");
                   setDescription("");
                   setNumberOfVisitors("");
@@ -126,8 +131,7 @@ const Home = (props) => {
 
    //updating request
 
-   const updateRequest = (id, type, description, numberOfVisitors, 
-      customerId, statusId, dateRequested) => {
+   const updateRequest = (id, type, description, numberOfVisitors, customerId, statusId, dateRequested) => {
          //console.log(statusId)
          Swal.fire({
             title: "Update Request",
@@ -178,7 +182,7 @@ const Home = (props) => {
             if(formData.value){
                props.updateRequestMutation({
                   variables: formData.value,
-                  refetchQueries: [{ query: getCustomerQuery}]
+                  refetchQueries:[{ query: getCustomerQuery }]
                }).then(response => {
                   let result = response.data.updateRequest;
                   if(result){
@@ -206,7 +210,7 @@ const Home = (props) => {
             return requests.map(request =>{
                //console.log(request.id)
               return (
-               <Requests key={props.id} id={request.id} type={request.type} description={request.description} customerId= {request.customerId} 
+               <Requests key={request.id} id={request.id} type={request.type} description={request.description} customerId= {request.customerId} 
                dateRequested={request.dateRequested} statusId={request.statusId} numberOfVisitors={request.numberOfVisitors}
                   updateRequest={updateRequest} updateStatus={updateStatus}
                />

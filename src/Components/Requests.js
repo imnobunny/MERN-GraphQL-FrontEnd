@@ -24,7 +24,7 @@ const Requests = (props) => {
             </td>
             <td>
                <Link to={`/Request/${requestId}`} className="btn btn-primary">
-               view
+                    view
                </Link>
             </td>
             <td>

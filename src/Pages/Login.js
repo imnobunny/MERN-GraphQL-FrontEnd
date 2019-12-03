@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { loginMutation } from '../graphql/mutations'
 
 const Login = (props) => {
-    console.log("Login page");
+    console.log(props);
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
