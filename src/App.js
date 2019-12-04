@@ -13,7 +13,7 @@ import EditRequestForm from './Forms/EditRequestForm';
 import Profile from './Pages/Profile';
 import OrganizerLogin from './Organizer/OrganizerLogin';
 import Dashboard from './Organizer/Dashboard';
-
+import ShowRequest from '../src/Organizer/ShowRequest';
 const App = () => {
 
     //get the token in saved local storage
@@ -101,6 +101,7 @@ const App = () => {
       <Route component={Profile} exact path="/Profile/:id"/>
       <Route component={OrganizerLogin}  exact path="/OrganizerLogin"/>
       <AdminRoute component={Dashboard}  token={token}  exact path="/Dashboard"/>
+      <Route component={ShowRequest}  exact path="/organizer/request/:id"/>
       </Switch>
     </BrowserRouter>
   
