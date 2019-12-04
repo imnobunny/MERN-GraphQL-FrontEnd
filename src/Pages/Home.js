@@ -266,6 +266,7 @@ const Home = (props) => {
                           <div className="form-group">
                              <label htmlFor="dateRequested" className="mr-3">Date of Event</label>
                             <DatePicker 
+                              // minDate={moment().toDate()}
                                selected={dateRequested}
                                onSelect={date => {
                                   setDateRequested(date);

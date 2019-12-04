@@ -14,6 +14,7 @@ import Profile from './Pages/Profile';
 import OrganizerLogin from './Organizer/OrganizerLogin';
 import Dashboard from './Organizer/Dashboard';
 import ShowRequest from '../src/Organizer/ShowRequest';
+import Main from './Pages/Main';
 const App = () => {
 
     //get the token in saved local storage
@@ -91,6 +92,7 @@ const App = () => {
          <AppNavbar currentUser={currentUser()} token={token}/>
       </Route>
     <Switch>
+      <Route component={Main} exact path="/"/> 
       <Route component={Register} exact path="/Register"/>
       <Authroute component={Services} exact path="/Services"/>
       <Route component={Login} exact path="/Login"/>
