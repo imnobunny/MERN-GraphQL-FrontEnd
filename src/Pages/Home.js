@@ -30,7 +30,7 @@ const Home = (props) => {
    const [ description, setDescription ] = useState("");
    const [ numberOfVisitors, setNumberOfVisitors ] = useState("");
    const [ customerId, setCustomerId ] = useState(userId); 
-   const [ statusId, setStatusId ] = useState("5dd28682b3e231234f675c29"); //default is pending
+   const [ statusId, setStatusId ] = useState("5de796a1ccef410004973372"); //default is pending
    const [ dateRequested, setDateRequested ] = useState(new Date());
 
 
@@ -44,7 +44,7 @@ const Home = (props) => {
          icon: 'warning',
          html:
             `<input id="currentStatusId" type="hidden" class="swal2-input" value="${statusId}">` +
-            `<input id="updatedStatusId" type="hidden" class="swal2-input" value="5dda47db3f02611e14827d9b">` ,
+            `<input id="updatedStatusId" type="hidden" class="swal2-input" value="5de796c3ccef410004973374">` ,
          showCancelButton: true,
          confirmButtonColor: '#3085d6',
          cancelButtonColor: '#d33',
