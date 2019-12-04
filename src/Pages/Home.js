@@ -146,7 +146,7 @@ const Home = (props) => {
             `<input id="customerId" type="hidden" class="swal2-input" value="${customerId}">` +
             `<input id="statusId" type="hidden" class="swal2-input" value="${statusId}">` +
             `<label>Date Requested</label>` +
-            `<input id="dateRequested" class="swal2-input" value="${dateRequested}">`,
+            `<input id="dateRequested" type="date" class="swal2-input" value="${dateRequested}">`,
                showCancelButton: true,
                confirmButtonText: "Update",
                confirmButtonColor: "#ffdd57",
