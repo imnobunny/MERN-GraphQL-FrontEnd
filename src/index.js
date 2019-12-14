@@ -7,7 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import App from './App';
 
 // apollo client
-const client = new ApolloClient({ uri: 'https://agile-brushlands-88220.herokuapp.com/graphqll'});
+const client = new ApolloClient({ uri: 'https://agile-brushlands-88220.herokuapp.com/graphql'});
 
 const root = document.querySelector("#root");
 const pageComponent = (
