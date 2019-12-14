@@ -19,7 +19,7 @@ console.log(props);
        icon: 'warning',
        html:
           `<input id="currentStatusId" type="hidden" class="swal2-input" value="${statusId}">` +
-          `<input id="updatedStatusId" type="hidden" class="swal2-input" value="5dd28682b3e231234f675c2a">` ,
+          `<input id="updatedStatusId" type="hidden" class="swal2-input" value=5dd28682b3e231234f675c2a">` ,
        showCancelButton: true,
        confirmButtonColor: '#3085d6',
        cancelButtonColor: '#d33',
@@ -54,7 +54,7 @@ console.log(props);
                    console.log(result)
                    if(result){
                       Swal.fire({
-                         title: "Request has been cancelled",
+                         title: "Request has been approved",
                          type: "info",
                          showConfirmButton: false,
                          timer: 3000

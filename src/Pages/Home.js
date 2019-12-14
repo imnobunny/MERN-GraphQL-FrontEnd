@@ -30,7 +30,8 @@ const Home = (props) => {
    const [ description, setDescription ] = useState("");
    const [ numberOfVisitors, setNumberOfVisitors ] = useState("");
    const [ customerId, setCustomerId ] = useState(userId); 
-   const [ statusId, setStatusId ] = useState("5de796a1ccef410004973372"); //default is pending
+  // const [ statusId, setStatusId ] = useState("5de796a1ccef410004973372"); //default is pending in aTLAS
+   const [ statusId, setStatusId ] = useState("5dda47db3f02611e14827d9b"); //default is pending in aTLAS
    const [ dateRequested, setDateRequested ] = useState(new Date());
 
 
@@ -266,7 +267,8 @@ const Home = (props) => {
                           <div className="form-group">
                              <label htmlFor="dateRequested" className="mr-3">Date of Event</label>
                             <DatePicker 
-                              // minDate={moment().toDate()}
+                              minDate={new Date()}
+                              
                                selected={dateRequested}
                                onSelect={date => {
                                   setDateRequested(date);

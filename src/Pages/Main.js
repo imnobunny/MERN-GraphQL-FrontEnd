@@ -4,8 +4,7 @@ const Main = () => {
     return(
        <Fragment>
          
-
-           <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+{/* <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                 <img class="d-block w-100" src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg" alt="First slide" />
@@ -14,7 +13,7 @@ const Main = () => {
                 <img class="d-block w-100" src="https://images.pexels.com/photos/2337777/pexels-photo-2337777.jpeg?" alt="Second slide" />
                 </div>
             </div>
-            </div>
+            </div> */}
        </Fragment>
     )
 }

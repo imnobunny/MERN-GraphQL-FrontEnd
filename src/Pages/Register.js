@@ -10,32 +10,59 @@ import { Redirect } from 'react-router-dom';
 import { storeCustomerMutation } from '../graphql/mutations';
 
 const Register = (props) => {
-  console.log(props);
+  //console.log(props);
 
   const [ email, setEmail] = useState("");
   const [ password, setPasword ] = useState("");
+  const [ password2, setPassword2 ] = useState("")
   const [ lastname, setLastname ] = useState("");
   const [ firstname, setFirtsname ] = useState("");
   const [ address, setAddress ] = useState("");
   const [ contact, setContact ] = useState("");
   const [ goToLogin, setGoToLogin ] = useState(false);
+  const [ isDisabled, setIsDisabled ] = useState(true);
 
 const register = e => {
   e.preventDefault();
+
+  //validation
+  if(email === "" || password === ""|| lastname === "" || firstname === "" || address === "" ||
+    contact === ""
+  )  {
+    //console.log("Please fill out all fields.")
+    Swal.fire({
+      title: "Registration",
+      text: "Please fill out all fields",
+      icon: "error"
+    })
+  } 
+
+  //is Password and Password2 matched?
+
+  if(!password === password2 || password.length < 9 || password2.length < 9){
+    Swal.fire({
+      title: "Registration",
+      text: "Passwords not matched",
+      icon: "error"
+    })
+  }
+
   props.storeCustomerMutation({
     variables: {
       email, password, lastname, firstname, address, contact
     }
   })
+
+
     .then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       const newCustomer = response.data;
 
       if(newCustomer) {
         Swal.fire({
           title: "Registration Successful",
           text: "You will be redirected to login page",
-          icon: "success"
+          icon: "success",
         })
           .then(()=>{
             setGoToLogin(true)
@@ -44,7 +71,9 @@ const register = e => {
         Swal.fire({
           title: "Registration Failed",
           text: "The server encountered an error",
-          icon: "error"
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
         })
       }
     })
@@ -58,10 +87,10 @@ if(goToLogin){
    <Fragment>
       <div className="container">
         <div className="row">
-          <div className="col-12">
-             <h3 className="title is-3 text-center mt-3">Register</h3>
+          <div className="col-6 mt-3">
+             <h3 className="title is-3 mt-5 mr-auto">Register</h3>
           </div>
-          <div className="col-12">
+          <div className="col-6 mt-5">
 
               <form onSubmit={e => register(e)}>
                 <div className="form-group">
@@ -78,7 +107,10 @@ if(goToLogin){
                   onChange={e =>setPasword(e.target.value)}
                   />
                   <label htmlFor="last_name">Re-Type Password</label>
-                  <input type="password" className="form-control" id="password1" />
+                  <input type="password" className="form-control" id="password1" 
+                    value = {password2}
+                    onChange={e => setPassword2(e.target.value)}
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="last_name">Last Name</label>
@@ -108,7 +140,8 @@ if(goToLogin){
                     onChange={e =>setContact(e.target.value)}
                   />
                 </div>
-                <button type="submit" className="btn btn-danger">Submit</button>
+                <button type="submit" className="btn btn-danger btn-block mb-5"
+                >Submit</button>
               </form>
               
           </div>

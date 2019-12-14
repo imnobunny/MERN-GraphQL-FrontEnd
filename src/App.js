@@ -31,21 +31,15 @@ const App = () => {
   
     
     const Authroute = ({token, ...props})=> {
-      console.log(verifyToken(token) && !isAdmin);
-      if (verifyToken(token) && !isAdmin) {
-        // return <Redirect to="/Home" />
-      
-        return (
-         
-         <Fragment>
-            <Home {...props} token={token} currentUser={currentUser()}/>
-         </Fragment>
-        )
-      } else {
-      console.log(verifyToken(token) && !isAdmin);
-        
-        return <Redirect to="/login" />
-      }
+      // console.log(verifyToken(token) && !isAdmin);
+      // if (verifyToken(token) && !isAdmin) {
+      //   return <Redirect to="/Home" />
+      //   // return 
+      // } else {
+      // console.log(verifyToken(token) && !isAdmin);
+      //   return <Redirect to="/login" />
+      // }
+      return token? <Route {...props}/> : <Redirect to="/Login" />
     }
 
     const AdminRoute = ({token, ...props}) =>{
@@ -81,7 +75,7 @@ const App = () => {
     window.location = "/login";
   }
 
-
+  const HomePage = props => <Home {...props} token={token} currentUser={currentUser()}/>
 
   //console.log(token);
   //const login = (props) => <Login {...props} token={token} />
@@ -97,8 +91,8 @@ const App = () => {
       <Authroute component={Services} exact path="/Services"/>
       <Route component={Login} exact path="/Login"/>
       <Route component={Logout} exact path="/Logout"/>
-      <Authroute component={Home} token={token} exact path="/Home"/>
-      <Authroute component={Request} exact path="/Request/:id/" />
+      <Authroute component={HomePage} token={token} exact path="/Home"/>
+      <Route component={Request} token={token} exact path="/Request/:id/" />
       <Authroute component={EditRequestForm} exact path="/Request/edit/:id/" />
       <Route component={Profile} exact path="/Profile/:id"/>
       <Route component={OrganizerLogin}  exact path="/OrganizerLogin"/>
