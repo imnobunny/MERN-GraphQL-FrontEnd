@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { graphql } from 'react-apollo';

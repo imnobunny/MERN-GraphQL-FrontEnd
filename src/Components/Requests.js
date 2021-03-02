@@ -20,7 +20,7 @@ const Requests = (props) => {
                  {props.dateRequested}   
             </td>
             <td>
-               {props.statusId === "5dd28682b3e231234f675c29"? "Pending" : props.statusId==="5dd28682b3e231234f675c2a" ? "Approved" : "Cancelled"} 
+               {props.statusId === "5dd28682b3e231234f675c29"? "Pending" : props.statusId==="5dd28682b3e231234f675c2a" ? "Cancelled" : "Approved"} 
             </td>
             <td>
                <Link to={`/Request/${requestId}`} className="btn btn-primary">

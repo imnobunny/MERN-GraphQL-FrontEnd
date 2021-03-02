@@ -28,17 +28,10 @@ const App = () => {
 
     //if eventOrganizer
   const [isAdmin, setIsAdmin] = useState(decoded ? decoded.isAdmin : null);
-  
-    
+
+
     const Authroute = ({token, ...props})=> {
-      // console.log(verifyToken(token) && !isAdmin);
-      // if (verifyToken(token) && !isAdmin) {
-      //   return <Redirect to="/Home" />
-      //   // return 
-      // } else {
-      // console.log(verifyToken(token) && !isAdmin);
-      //   return <Redirect to="/login" />
-      // }
+
       return token? <Route {...props}/> : <Redirect to="/Login" />
     }
 
@@ -67,8 +60,8 @@ const App = () => {
     // const AdminUser = () => {
     //   return { userEmail, userId, token, isAdmin }
     // };
-  
-  // Log out 
+
+  // Log out
     const Logout = (props) => {
     localStorage.clear();
     //updateSession();
@@ -85,22 +78,22 @@ const App = () => {
     <Route>
          <AppNavbar currentUser={currentUser()} token={token}/>
       </Route>
-    <Switch>
-      <Route component={Main} exact path="/"/> 
-      <Route component={Register} exact path="/Register"/>
-      <Authroute component={Services} exact path="/Services"/>
-      <Route component={Login} exact path="/Login"/>
-      <Route component={Logout} exact path="/Logout"/>
-      <Authroute component={HomePage} token={token} exact path="/Home"/>
-      <Route component={Request} token={token} exact path="/Request/:id/" />
-      <Authroute component={EditRequestForm} exact path="/Request/edit/:id/" />
-      <Route component={Profile} exact path="/Profile/:id"/>
-      <Route component={OrganizerLogin}  exact path="/OrganizerLogin"/>
-      <AdminRoute component={Dashboard}  token={token}  exact path="/Dashboard"/>
-      <Route component={ShowRequest}  exact path="/organizer/request/:id"/>
+      <Switch>
+          <Redirect exact from="/" to="login"/>
+          <Route component={Login} exact path="/login"/>
+          <Route component={Register} exact path="/Register"/>
+          <Authroute component={Services} exact path="/Services"/>
+          <Route component={Logout} exact path="/Logout"/>
+          <Authroute component={HomePage} token={token} exact path="/Home"/>
+          <Route component={Request} token={token} exact path="/Request/:id/" />
+          <Authroute component={EditRequestForm} exact path="/Request/edit/:id/" />
+          <Route component={Profile} exact path="/Profile/:id"/>
+          <Route component={OrganizerLogin}  exact path="/OrganizerLogin"/>
+          <AdminRoute component={Dashboard}  token={token}  exact path="/Dashboard"/>
+          <Route component={ShowRequest}  exact path="/organizer/request/:id"/>
       </Switch>
     </BrowserRouter>
-  
+
     </div>
   )
 }
