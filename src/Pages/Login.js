@@ -10,12 +10,7 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { loginMutation } from '../graphql/mutations'
 
 const Login = (props) => {
-    const testapp = () =>{
-        console.log('useEffect')
-    }
-    useEffect(() => {
-        testapp();
-    }, []);
+
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
