@@ -1,21 +1,20 @@
 import React, { Fragment } from 'react';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import { withRouter } from "react-router";
 import { Navbar } from 'react-bulma-components';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 const AppNavbar = (props) => {
-  //console.log(props.currentUser)
 
 
-
-let userId = props.currentUser.userId;
-
+  const { location } = props;
+  const { userId } =props.currentUser;
  
   let startNav = "";
   let endNav ="";
 
-  if(props.token && props.currentUser.isAdmin === undefined) {
+  if(props.token && typeof props.currentUser.isAdmin === "undefined") {
     endNav = (
       <Fragment>
         <Link className="navbar-item has-text-white" to="/Logout">Logout</Link>
@@ -28,7 +27,7 @@ let userId = props.currentUser.userId;
       </Fragment>
     )
 
-  } else if (props.currentUser.isAdmin === true && props.token) {
+  } else if (props.currentUser.isAdmin && props.token) {
     endNav = (
       <Fragment>
         <Link className="navbar-item has-text-white" to="/Logout">Logout</Link>
@@ -43,10 +42,7 @@ let userId = props.currentUser.userId;
 
   } else {
     endNav = (
-      <Fragment>
-        <Link className="navbar-item has-text-white" to="/Login">Login</Link>
-        <Link className="navbar-item has-text-white" to="/Register">Register</Link>
-      </Fragment>
+      location.pathname === "/Register" ? <Link className="navbar-item has-text-white" to="/Login">Login</Link> : <Link className="navbar-item has-text-white" to="/Register">Register</Link> 
     )
   }
 
@@ -63,10 +59,9 @@ let userId = props.currentUser.userId;
     
       <Navbar.Container>{ startNav }</Navbar.Container>
       <Navbar.Container position="end">{ endNav }</Navbar.Container>
-      
       </Navbar.Menu>
     </Navbar>
 
     )
 }
-export default AppNavbar;
+export default withRouter(AppNavbar);
